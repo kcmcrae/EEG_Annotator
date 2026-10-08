@@ -1,0 +1,24 @@
+*.pyc
+__pycache__/
+*.py[cod]
+*$py.class
+
+build/
+dist/
+.idea/
+.DS_store
+*.spec
+*.egg-info/
+
+# virtual environment
+eeg_annotation/
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+*.edf
+*.fif
+*.bdf

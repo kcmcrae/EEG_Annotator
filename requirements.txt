@@ -1,0 +1,7 @@
+mne
+mne-qt-browser
+PySide6
+pyedflib
+pyinstaller
+numpy
+pandas
