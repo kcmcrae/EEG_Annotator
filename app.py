@@ -76,8 +76,6 @@ class EEGLoaderThread(QThread):
                 return
 
             loaded_raw.pick(found_channels)
-            montage = mne.channels.make_standard_montage("standard_1020")
-            loaded_raw.set_montage(montage, on_missing="ignore")
 
             # --- SEED PRESET ANNOTATIONS INTO MNE ---
             # Inject 0-duration dummy annotations at t=0s for presets so MNE populates buttons automatically
@@ -216,8 +214,8 @@ class EEGViewer(QMainWindow):
         self.lbl_channels.setWordWrap(True)
         side_layout.addWidget(self.lbl_channels)
 
-        # 2. Reference Mode Selector
-        side_layout.addWidget(QLabel("<b>Reference Display Mode:</b>"))
+        # 2. Montage Selector
+        side_layout.addWidget(QLabel("<b>Montage:</b>"))
         self.ref_combo = QComboBox()
         self.ref_combo.addItems([
             "Referential (Single-ended)",
@@ -563,7 +561,8 @@ class EEGViewer(QMainWindow):
         self.browser = self.raw.plot(
             show=False,
             block=False,
-            show_options=True
+            show_options=True,
+            precompute=True
         )
         self.eeg_layout.addWidget(self.browser)
         self.sync_annotations()
